@@ -1,0 +1,95 @@
+@charset "UTF-8";
+/*=================================================
+Theme Name: Crud Javascript and Jquery
+Theme URI:  www.ricardolimacoder.com.br
+Author: Ricardo lima
+Author URI: www.ricardolimacoder.com.br
+Description: Crud based on the source code - https://github.com/psantos10/minha_estante_artigo
+Version: 1.0
+=================================================*/
+
+/*==============================================================================
+ 1 - Global Styles
+==============================================================================*/
+
+
+ul{
+    padding: 0px;
+    list-style: none;
+}
+
+body{
+  background-color: #ececec;
+}
+
+/*==============================================================================
+ 2 - SECTION
+==============================================================================*/
+.lblProductId, #productId, #btnDelete{
+  display: none;
+}
+
+.group-actions{
+  text-align: center;
+}
+.group-actions i{
+  font-size: 18px;
+}
+.btn-action{
+  margin-left: 5px;
+  padding: 5px 7px 2px 7px;
+}
+
+
+
+@media only screen and (max-width: 389px){
+  .group-actions i{
+    font-size: 14px;
+  }
+  .btn-action{
+    margin: 2px 2px 0px 0px;
+    padding: 2px 4px 2px 4px;
+  }
+
+
+}
+
+/*======================================
+ #SUB-SECTION
+======================================*/
+
+
+
+/*==============================================================================
+ - RESPONSIVE CONFIGS
+==============================================================================*/
+
+/*======================================
+ #Tablet (Portrait)
+======================================*/
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+
+
+
+}
+
+
+/*======================================
+#Mobile (Landscape) - Note: Design for a width of 480px
+======================================*/
+
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+
+
+}
+/*======================================
+#Mobile (Portrait) - Note: Design for a width of 320px
+======================================*/
+@media only screen and (max-width: 767px) {
+
+
+
+}

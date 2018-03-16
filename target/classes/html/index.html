@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Crud JS</title>
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<!-- fonts -->
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<!-- Main Styleshet -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<main>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<table id="crudTable" class="table table-bordered">
+						<!-- Table Head -->
+						<thead>
+						<tr>
+							<th>id</th>
+							<th>Product name</th>
+							<th>Product details</th>
+							<th>Action</th>
+						</tr>
+						</thead>
+						<!-- Table Body -->
+						<tbody>
+						</tbody>
+					</table>
+				</div><!-- ./end col-->
+
+				<!-- product form crud -->
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="lblProductId" for="productId">Product ID:</label><label id="productId"></label>
+					</div>
+
+					<div class="form-group">
+						<label for="productName">Product Name</label>
+						<input type="text" class="form-control" name="productName" id="productName">
+					</div>
+
+					<div class="form-group">
+						<label for="productDetail">Product Details</label>
+						<input type="text" class="form-control" name="productDetail" id="productDetail">
+					</div>
+					<button type="button" id="updateButton" class="btn btn-primary">Add product</button>
+					<button id="btnDelete" onclick="deleteRow(this);" class="btn btn-danger">Delete</button>
+				</div><!-- ./end form-crud -->
+
+			</div><!-- ./end row -->
+		</div><!-- ./end Container -->
+	</section>
+</main>
+
+
+<!-- scripts -->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+</body>
+</html>
