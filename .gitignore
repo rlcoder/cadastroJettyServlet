@@ -1,22 +1,36 @@
-# Compiled class file
-*.class
+# maven
+target
+*.versionsBackup
+*.releaseBackup
 
-# Log file
+# common junk
 *.log
+*.diff
+*.patch
+*.sw[a-z0-9]
+*.bak
+*.backup
+*.debug
+*.dump
+*~
+~*
 
-# BlueJ files
-*.ctxt
+# eclipse
+.project
+.settings
+.classpath
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# intellij / idea
+*.iml
+*.ipr
+*.iws
+.idea/
 
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# netbeans
+nbproject/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# Mac filesystem dust
+.DS_Store
+
+# merge tooling
+*.orig
