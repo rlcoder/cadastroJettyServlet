@@ -12,11 +12,11 @@ public class ProdutoDAO {
 
     private Connection con;
 
-    public ProdutoDAO(Connection con) {
+    public ProdutoDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
 
-        public void adicionaProduto (Produto produto) {
+        public boolean adicionaProduto (Produto produto) {
         String sql = "insert into loja.tb_produto " +
                 "(nome,descricao,quantidade, valor)" +
                 " values (?,?,?,?)";
@@ -33,8 +33,8 @@ public class ProdutoDAO {
 
 
             // executa
-            ps.execute();
-            ps.close();
+            boolean isAdicionado = ps.execute();
+            return isAdicionado;
         } catch (Exception e){
             throw  new RuntimeException(e);
         }finally {
@@ -63,7 +63,7 @@ public class ProdutoDAO {
             rs = ps.executeQuery();
             Produto produto = new Produto();
             while (rs.next()){
-                produto.setCodProduto(rs.getLong("codProduto"));
+                produto.setCodProduto(rs.getLong("cod_produto"));
                 produto.setNome(rs.getString("nome"));
                 produto.setDescricao(rs.getString("descricao"));
                 produto.setValor(rs.getBigDecimal("valor"));
@@ -83,7 +83,7 @@ public class ProdutoDAO {
 
     }
 
-    public ArrayList<Produto> listaProdutos(long codProduto){
+    public ArrayList<Produto> listaProdutos(){
 
         ResultSet rs = null;
         String sql = "SELECT  * FROM  loja.tb_produto";
@@ -96,7 +96,7 @@ public class ProdutoDAO {
            ArrayList<Produto> listaProduto = new ArrayList<>();
             while (rs.next()){
                 Produto produto = new Produto();
-                produto.setCodProduto(rs.getLong("codProduto"));
+                produto.setCodProduto(rs.getLong("cod_produto"));
                 produto.setNome(rs.getString("nome"));
                 produto.setDescricao(rs.getString("descricao"));
                 produto.setValor(rs.getBigDecimal("valor"));
@@ -117,7 +117,7 @@ public class ProdutoDAO {
 
     }
 
-    public Produto atualizarProduto(Produto produto){
+    public boolean atualizarProduto(Produto produto){
 
         ResultSet rs = null;
         String sql = "UPDATE loja.tb_produto SET nome= ?, descricao = ?, quantidade = ?, valor = ? WHERE  cod_produto = ?";
@@ -134,12 +134,7 @@ public class ProdutoDAO {
             ps.setLong(5, produto.getCodProduto());
 
             // executa
-            boolean atualizou = ps.execute();
-            if (atualizou){
-                return  produto;
-            }
-            return null;
-
+            return ps.execute();
         } catch (Exception e){
             throw  new RuntimeException(e);
         } finally {
@@ -154,7 +149,7 @@ public class ProdutoDAO {
     }
 
 
-    public void removerProduto(long codProduto){
+    public boolean removerProduto(long codProduto){
 
         ResultSet rs = null;
         String sql = "DELETE FROM  loja.tb_produto WHERE cod_produto = ?";
@@ -167,7 +162,7 @@ public class ProdutoDAO {
             ps.setLong(1, codProduto);
 
             // executa
-            boolean deletou = ps.execute();
+             return ps.execute();
         } catch (Exception e){
             throw  new RuntimeException(e);
         }finally {
