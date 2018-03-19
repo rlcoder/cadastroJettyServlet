@@ -8,6 +8,9 @@ Version: 1.0
 =================================================*/
 //Global var
 
+$(document).ready(function () {
+   listaTodosProdutos();
+});
 
 $("#updateButton").on('click', function () {
 	let obj = new Object();
@@ -25,24 +28,82 @@ $("#updateButton").on('click', function () {
 
 
 function formClear(){
-    $("#productName").val("");
-    $("#productDetail").val("");
+    $("#codProduto").val('');
+    $("#nome").val('');
+    $("#descricao").val('');
+    $("#valor").val('');
+    $("#quantidade").val('');
 }
 
-function buildTableRow(data){
-    let rowTable =
-        `<tr>
-		<td>${ '-' }</td>
-		<td>${data.nome}</td>
-		<td>${data.descricao}</td>
+function cadastrarProduto(){
+    let obj = new Object();
+    obj.codProduto = $("#codProduto").val();
+    obj.nome = $("#nome").val();
+    obj.descricao = $("#descricao").val();
+    obj.valor =  $("#valor").val();
+    obj.quantidade = $("#quantidade").val();
+
+    $.ajax({
+        url: '/produto',
+        data:  JSON.stringify(obj),
+        type: 'POST',
+        success: function(retorno) {
+                formClear();
+               $('#alerta').html(`<div class="modal-dialog" id="msg-alerta"><div class="alert alert-success">
+			        <strong>Produto Cadastrado com sucesso!</strong> Produto Cadastrado!
+			    </div>
+			   </div>`);
+               $("#modal-alerta").modal('show');
+        },
+        error: function(retorno){
+            $('#alerta').html(`<div class="modal-dialog" id="msg-alerta"><div class="alert alert-danger">
+			        <strong>Erro!</strong> Produto não cadastrado!
+			    </div>
+			   </div>`);
+            $("#modal-alerta").modal('show');
+        }
+    });
+}
+
+function listaTodosProdutos() {
+    $.ajax({
+        url: '/produto',
+        type: 'GET',
+        success: function(retorno) {
+            $("#corpoTabela").html(gerarCorpoTabela(retorno));
+        },
+        error: function(retorno){
+            $('#alerta').html(`<div class="modal-dialog" id="msg-alerta"><div class="alert alert-danger">
+			        <strong>Erro!</strong>  Na busca de produtos!
+			    </div>
+			   </div>`);
+            $("#modal-alerta").modal('show');
+        }
+    });
+}
+
+function gerarCorpoTabela(listaProdutos){
+    let corpoTabela = '';
+    for(let i = 0; i < listaProdutos.length; i++){
+        corpoTabela+= criarLinhasTabela(listaProdutos[i]);
+    }
+   return corpoTabela;
+}
+
+function criarLinhasTabela(dados){
+    let linhaTabela =
+        `<tr data-codPessoa= "${dados.codProduto}">
+		<td>${dados.codProduto}</td>
+		<td>${dados.nome}</td>
+		<td>${dados.descricao}</td>
+		<td>${dados.quantidade}</td>
+		<td>${dados.valor}</td>
 		<td><div class="group-actions">
-		<button class="btn btn-info btn-action" onclick="editRow(this)"
-			data-id= "${" - "}" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-		<button class="btn btn-danger btn-action" onclick="deleteRow(this)"
-			data-id="${" - "}" ><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+		<button class="btn btn-info btn-action" onclick="editarLinha(this)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+		<button class="btn btn-danger btn-action" onclick="removerLinha(this)" ><i class="fa fa-times-circle" aria-hidden="true"></i></button>
 		</div></td>
 	 </tr>`;
-    return rowTable;
+    return linhaTabela;
 }
 
 //function to add row in table

@@ -18,6 +18,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
+					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalFormProduto">
+						Cadastrar Produto
+					</button>
 					<table id="crudTable" class="table table-bordered">
 						<!-- Table Head -->
 						<thead>
@@ -25,41 +28,59 @@
 							<th>Codigo Produto</th>
 							<th>Produto</th>
 							<th>Descricão</th>
-							<th>Valor</th>
 							<th>Quantidade</th>
+							<th>Valor</th>
 							<th>Ação</th>
 						</tr>
 						</thead>
 						<!-- Table Body -->
-						<tbody>
+						<tbody id="corpoTabela">
 						</tbody>
 					</table>
 				</div><!-- ./end col-->
-
-				<!-- product form crud -->
-				<div class="col-md-6">
-					<div class="form-group">
-						<label class="lblProductId" for="productId">Product ID:</label><label id="productId"></label>
-					</div>
-
-					<div class="form-group">
-						<label for="productName">Product Name</label>
-						<input type="text" class="form-control" name="productName" id="productName">
-					</div>
-
-					<div class="form-group">
-						<label for="productDetail">Product Details</label>
-						<input type="text" class="form-control" name="productDetail" id="productDetail">
-					</div>
-					<button type="button" id="updateButton" class="btn btn-primary">Add product</button>
-					<button id="btnDelete" onclick="deleteRow(this);" class="btn btn-danger">Delete</button>
-				</div><!-- ./end form-crud -->
 
 			</div><!-- ./end row -->
 		</div><!-- ./end Container -->
 	</section>
 </main>
 
+
+<div class="modal fade" tabindex="-1" id="modalFormProduto" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="tituloModal">Cadastro de Produtos</h4>
+			</div>
+			<div class="modal-body">
+						<form id="formProduto">
+							<input type="number" name="codProduto" id="codProduto" class="hidden">
+							<label>Nome</label>
+							<input type="text" name="nome" id="nome" required>
+							<label>Descricão</label>
+							<input type="text" name="descricao" id="descricao" required>
+							<label>Quantidade</label>
+							<input type="number" name="quantidade" id="quantidade">
+							<label>Valor</label>
+							<input type="text" name="valor" id="valor">
+						</form>
+			</div>
+			<div class="modal-footer">
+				<div id="buttonModal">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				<button type="button" id="cadastrarProduto" class="btn btn-primary">Cadastrar</button>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- MODAL ALERTA -->
+<!-- Modal -->
+<div class="modal fade" id="modal-alerta" role="dialog">
+	<div class="modal-dialog" id="msg-alerta">
+	</div>
+</div>
 
 <!-- scripts -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
