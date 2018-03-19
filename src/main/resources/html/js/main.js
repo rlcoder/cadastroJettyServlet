@@ -37,18 +37,18 @@ function formClear(){
 
 function cadastrarProduto(){
     let obj = new Object();
-    obj.codProduto = $("#codProduto").val();
     obj.nome = $("#nome").val();
     obj.descricao = $("#descricao").val();
     obj.valor =  $("#valor").val();
     obj.quantidade = $("#quantidade").val();
-
     $.ajax({
         url: '/produto',
         data:  JSON.stringify(obj),
         type: 'POST',
         success: function(retorno) {
                 formClear();
+                listaTodosProdutos();
+                $("#modalFormProduto").modal('hide');
                $('#alerta').html(`<div class="modal-dialog" id="msg-alerta"><div class="alert alert-success">
 			        <strong>Produto Cadastrado com sucesso!</strong> Produto Cadastrado!
 			    </div>

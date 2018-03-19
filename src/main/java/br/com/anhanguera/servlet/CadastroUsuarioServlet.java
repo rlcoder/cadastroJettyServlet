@@ -93,7 +93,7 @@ public class CadastroUsuarioServlet extends HttpServlet {
 
         Produto objJsonProduto = new Gson().fromJson(jsonBuffer.toString(), Produto.class);
         ProdutoBean produto = new ProdutoBean();
-        boolean isAdicionado = produto.atualizarProduto(objJsonProduto);
+        boolean isAdicionado = produto.adicionarProduto(objJsonProduto);
         if (isAdicionado){
             resp.setContentType("application/json");
             resp.setStatus(HttpServletResponse.SC_CREATED);

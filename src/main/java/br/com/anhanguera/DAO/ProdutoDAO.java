@@ -33,8 +33,7 @@ public class ProdutoDAO {
 
 
             // executa
-            boolean isAdicionado = ps.execute();
-            return isAdicionado;
+            return ps.execute();
         } catch (Exception e){
             throw  new RuntimeException(e);
         }finally {
